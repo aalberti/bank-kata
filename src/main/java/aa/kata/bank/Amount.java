@@ -13,6 +13,10 @@ class Amount {
         return new Amount(this.value + amount.value);
     }
 
+    Amount remove(Amount amount) {
+        return new Amount(this.value - amount.value);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

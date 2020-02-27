@@ -18,4 +18,8 @@ class Account {
     Account deposit(Amount amount) {
         return new Account(balance.add(amount));
     }
+
+    Account withdraw(Amount amount) {
+        return new Account(balance.remove(amount));
+    }
 }

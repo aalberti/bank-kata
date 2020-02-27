@@ -13,6 +13,10 @@ public class Balance {
         return new Balance(this.amount.add(amount));
     }
 
+    Balance remove(Amount amount) {
+        return new Balance(this.amount.remove(amount));
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

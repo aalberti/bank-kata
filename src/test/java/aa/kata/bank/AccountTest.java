@@ -28,4 +28,13 @@ class AccountTest {
         assertThat(account.balance())
                 .isEqualTo(new Balance(new Amount(2)));
     }
+
+    @Test
+    void withdraw() {
+        Account account = new Account();
+        account = account.deposit(new Amount(1));
+        account = account.withdraw(new Amount(1));
+        assertThat(account.balance())
+                .isEqualTo(new Balance(new Amount(0)));
+    }
 }
