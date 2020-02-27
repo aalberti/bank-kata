@@ -21,4 +21,8 @@ public class Balance {
     public int hashCode() {
         return Objects.hash(amount);
     }
+
+    Balance add(Amount amount) {
+        return new Balance(this.amount.add(amount));
+    }
 }

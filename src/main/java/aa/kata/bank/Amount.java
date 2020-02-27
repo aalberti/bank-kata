@@ -21,4 +21,8 @@ class Amount {
     public int hashCode() {
         return Objects.hash(value);
     }
+
+    Amount add(Amount amount) {
+        return new Amount(this.value + amount.value);
+    }
 }

@@ -19,4 +19,13 @@ class AccountTest {
         assertThat(account.balance())
                 .isEqualTo(new Balance(new Amount(10)));
     }
+
+    @Test
+    void add_subsequent_deposits_to_balance() {
+        Account account = new Account();
+        account = account.deposit(new Amount(1));
+        account = account.deposit(new Amount(1));
+        assertThat(account.balance())
+                .isEqualTo(new Balance(new Amount(2)));
+    }
 }

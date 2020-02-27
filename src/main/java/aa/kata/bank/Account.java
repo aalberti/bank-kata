@@ -16,6 +16,6 @@ class Account {
     }
 
     Account deposit(Amount amount) {
-        return new Account(new Balance(amount));
+        return new Account(balance.add(amount));
     }
 }
