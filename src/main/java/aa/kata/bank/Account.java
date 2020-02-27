@@ -22,4 +22,8 @@ class Account {
     Account withdraw(Amount amount) {
         return new Account(balance.remove(amount));
     }
+
+    History history() {
+        return new History(new AccountCreationEvent(this));
+    }
 }
