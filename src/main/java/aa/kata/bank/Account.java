@@ -24,7 +24,8 @@ class Account {
     }
 
     Account withdraw(Amount amount) {
-        return new Account(balance.remove(amount), history);
+        Balance balanceAfter = balance.remove(amount);
+        return new Account(balanceAfter, history.logWithdrawal(balance, balanceAfter));
     }
 
     History history() {

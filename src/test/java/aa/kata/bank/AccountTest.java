@@ -58,4 +58,23 @@ class AccountTest {
                         )
                 ));
     }
+
+    @Test
+    void log_withdrawal() {
+        Account account = new Account();
+        account = account.deposit(new Amount(2));
+        account = account.withdraw(new Amount(1));
+        assertThat(account.history())
+                .isEqualTo(new History(
+                        new AccountCreationEvent(),
+                        new DepositEvent(
+                                new Balance(new Amount(0)),
+                                new Balance(new Amount(2))
+                        ),
+                        new WithdrawalEvent(
+                                new Balance(new Amount(2)),
+                                new Balance(new Amount(1))
+                        )
+                ));
+    }
 }

@@ -13,6 +13,10 @@ class History {
         return new History(concatenate(this.events, new DepositEvent(before, after)));
     }
 
+    History logWithdrawal(Balance before, Balance after) {
+        return new History(concatenate(this.events, new WithdrawalEvent(before, after)));
+    }
+
     private static AccountEvent[] concatenate(AccountEvent[] events, AccountEvent newEvent) {
         AccountEvent[] newEvents = new AccountEvent[events.length + 1];
         System.arraycopy(events, 0, newEvents, 0, events.length);
