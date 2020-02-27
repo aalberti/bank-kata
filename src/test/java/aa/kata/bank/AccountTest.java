@@ -42,6 +42,20 @@ class AccountTest {
     void log_account_creation() {
         Account account = new Account();
         assertThat(account.history())
-                .isEqualTo(new History(new AccountCreationEvent(account)));
+                .isEqualTo(new History(new AccountCreationEvent()));
+    }
+
+    @Test
+    void log_deposit() {
+        Account account = new Account();
+        account = account.deposit(new Amount(1));
+        assertThat(account.history())
+                .isEqualTo(new History(
+                        new AccountCreationEvent(),
+                        new DepositEvent(
+                                new Balance(new Amount(0)),
+                                new Balance(new Amount(1))
+                        )
+                ));
     }
 }
