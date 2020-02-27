@@ -9,6 +9,10 @@ class Amount {
         this.value = value;
     }
 
+    Amount add(Amount amount) {
+        return new Amount(this.value + amount.value);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -20,9 +24,5 @@ class Amount {
     @Override
     public int hashCode() {
         return Objects.hash(value);
-    }
-
-    Amount add(Amount amount) {
-        return new Amount(this.value + amount.value);
     }
 }
