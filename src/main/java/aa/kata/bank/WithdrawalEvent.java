@@ -7,7 +7,7 @@ class WithdrawalEvent implements AccountEvent {
     private final Balance before;
     private final Balance after;
 
-    WithdrawalEvent(LocalDate of, Balance before, Balance after) {
+    WithdrawalEvent(LocalDate of, Balance before, Amount amount, Balance after) {
         this.before = before;
         this.after = after;
     }

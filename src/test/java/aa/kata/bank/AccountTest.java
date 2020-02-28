@@ -25,7 +25,9 @@ class AccountTest {
     @Test
     void add_first_deposit_to_balance() {
         Account account = new Account(calendar);
+
         account = account.deposit(new Amount(10));
+
         assertThat(account.balance())
                 .isEqualTo(new Balance(new Amount(10)));
     }
@@ -33,8 +35,10 @@ class AccountTest {
     @Test
     void add_subsequent_deposits_to_balance() {
         Account account = new Account(calendar);
+
         account = account.deposit(new Amount(1));
         account = account.deposit(new Amount(1));
+
         assertThat(account.balance())
                 .isEqualTo(new Balance(new Amount(2)));
     }
@@ -42,8 +46,10 @@ class AccountTest {
     @Test
     void withdraw() {
         Account account = new Account(calendar);
+
         account = account.deposit(new Amount(1));
         account = account.withdraw(new Amount(1));
+
         assertThat(account.balance())
                 .isEqualTo(new Balance(new Amount(0)));
     }
@@ -52,7 +58,9 @@ class AccountTest {
     void log_account_creation() {
         when(calendar.today())
                 .thenReturn(LocalDate.of(2020, 1, 1));
+
         Account account = new Account(calendar);
+
         assertThat(account.history())
                 .isEqualTo(new History(calendar,
                         new AccountCreationEvent(LocalDate.of(2020, 1, 1))
@@ -74,6 +82,7 @@ class AccountTest {
                         new DepositEvent(
                                 LocalDate.of(2020, 2, 2),
                                 new Balance(new Amount(0)),
+                                new Amount(1),
                                 new Balance(new Amount(1))
                         )
                 ));
@@ -96,11 +105,13 @@ class AccountTest {
                         new DepositEvent(
                                 LocalDate.of(2020, 2, 2),
                                 new Balance(new Amount(0)),
+                                new Amount(2),
                                 new Balance(new Amount(2))
                         ),
                         new WithdrawalEvent(
                                 LocalDate.of(2020, 3, 3),
                                 new Balance(new Amount(2)),
+                                new Amount(1),
                                 new Balance(new Amount(1))
                         )
                 ));

@@ -20,12 +20,12 @@ class Account {
 
     Account deposit(Amount amount) {
         Balance balanceAfter = balance.add(amount);
-        return new Account(balanceAfter, history.logDeposit(balance, balanceAfter));
+        return new Account(balanceAfter, history.logDeposit(balance, amount, balanceAfter));
     }
 
     Account withdraw(Amount amount) {
         Balance balanceAfter = balance.remove(amount);
-        return new Account(balanceAfter, history.logWithdrawal(balance, balanceAfter));
+        return new Account(balanceAfter, history.logWithdrawal(balance, amount, balanceAfter));
     }
 
     History history() {

@@ -8,7 +8,7 @@ class DepositEvent implements AccountEvent {
     private final Balance before;
     private final Balance after;
 
-    DepositEvent(LocalDate date, Balance before, Balance after) {
+    DepositEvent(LocalDate date, Balance before, Amount amount, Balance after) {
         this.date = date;
         this.before = before;
         this.after = after;

@@ -17,18 +17,18 @@ class History {
         this.events = events;
     }
 
-    History logDeposit(Balance before, Balance after) {
+    History logDeposit(Balance before, Amount amount, Balance after) {
         return new History(calendar,
                 concatenate(
                         this.events,
-                        new DepositEvent(calendar.today(), before, after)));
+                        new DepositEvent(calendar.today(), before, amount, after)));
     }
 
-    History logWithdrawal(Balance before, Balance after) {
+    History logWithdrawal(Balance before, Amount amount, Balance after) {
         return new History(calendar,
                 concatenate(
                         this.events,
-                        new WithdrawalEvent(calendar.today(), before, after)));
+                        new WithdrawalEvent(calendar.today(), before, amount, after)));
     }
 
     private static AccountEvent[] concatenate(AccountEvent[] events, AccountEvent newEvent) {
