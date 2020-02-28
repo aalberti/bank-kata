@@ -7,22 +7,28 @@ class History {
     private Calendar calendar;
     private final AccountEvent[] events;
 
+    History(Calendar calendar) {
+        this.calendar = calendar;
+        this.events = new AccountEvent[]{new AccountCreationEvent(calendar.today())};
+    }
+
     History(Calendar calendar, AccountEvent... events) {
         this.calendar = calendar;
         this.events = events;
     }
 
     History logDeposit(Balance before, Balance after) {
-        return new History(
-                calendar,
+        return new History(calendar,
                 concatenate(
                         this.events,
-                        new DepositEvent(calendar.today(), before, after))
-        );
+                        new DepositEvent(calendar.today(), before, after)));
     }
 
     History logWithdrawal(Balance before, Balance after) {
-        return new History(calendar, concatenate(this.events, new WithdrawalEvent(before, after)));
+        return new History(calendar,
+                concatenate(
+                        this.events,
+                        new WithdrawalEvent(calendar.today(), before, after)));
     }
 
     private static AccountEvent[] concatenate(AccountEvent[] events, AccountEvent newEvent) {

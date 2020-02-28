@@ -1,12 +1,13 @@
 package aa.kata.bank;
 
+import java.time.LocalDate;
 import java.util.Objects;
 
 class WithdrawalEvent implements AccountEvent {
     private final Balance before;
     private final Balance after;
 
-    WithdrawalEvent(Balance before, Balance after) {
+    WithdrawalEvent(LocalDate of, Balance before, Balance after) {
         this.before = before;
         this.after = after;
     }

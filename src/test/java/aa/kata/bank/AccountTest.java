@@ -83,7 +83,8 @@ class AccountTest {
     void log_withdrawal() {
         when(calendar.today())
                 .thenReturn(LocalDate.of(2020, 1, 1))
-                .thenReturn(LocalDate.of(2020, 2, 2));
+                .thenReturn(LocalDate.of(2020, 2, 2))
+                .thenReturn(LocalDate.of(2020, 3, 3));
         Account account = new Account(calendar);
 
         account = account.deposit(new Amount(2));
@@ -98,6 +99,7 @@ class AccountTest {
                                 new Balance(new Amount(2))
                         ),
                         new WithdrawalEvent(
+                                LocalDate.of(2020, 3, 3),
                                 new Balance(new Amount(2)),
                                 new Balance(new Amount(1))
                         )
