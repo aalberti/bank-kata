@@ -50,23 +50,29 @@ class AccountTest {
 
     @Test
     void log_account_creation() {
+        when(calendar.today())
+                .thenReturn(LocalDate.of(2020, 1, 1));
         Account account = new Account(calendar);
         assertThat(account.history())
-                .isEqualTo(new History(calendar, new AccountCreationEvent()));
+                .isEqualTo(new History(calendar,
+                        new AccountCreationEvent(LocalDate.of(2020, 1, 1))
+                ));
     }
 
     @Test
     void log_deposit() {
-        when(calendar.today()).thenReturn(LocalDate.of(2020, 1, 1));
+        when(calendar.today())
+                .thenReturn(LocalDate.of(2020, 1, 1))
+                .thenReturn(LocalDate.of(2020, 2, 2));
         Account account = new Account(calendar);
 
         account = account.deposit(new Amount(1));
 
         assertThat(account.history())
                 .isEqualTo(new History(calendar,
-                        new AccountCreationEvent(),
+                        new AccountCreationEvent(LocalDate.of(2020, 1, 1)),
                         new DepositEvent(
-                                LocalDate.of(2020, 1, 1),
+                                LocalDate.of(2020, 2, 2),
                                 new Balance(new Amount(0)),
                                 new Balance(new Amount(1))
                         )
@@ -75,7 +81,9 @@ class AccountTest {
 
     @Test
     void log_withdrawal() {
-        when(calendar.today()).thenReturn(LocalDate.of(2020, 2, 2));
+        when(calendar.today())
+                .thenReturn(LocalDate.of(2020, 1, 1))
+                .thenReturn(LocalDate.of(2020, 2, 2));
         Account account = new Account(calendar);
 
         account = account.deposit(new Amount(2));
@@ -83,7 +91,7 @@ class AccountTest {
 
         assertThat(account.history())
                 .isEqualTo(new History(calendar,
-                        new AccountCreationEvent(),
+                        new AccountCreationEvent(LocalDate.of(2020, 1, 1)),
                         new DepositEvent(
                                 LocalDate.of(2020, 2, 2),
                                 new Balance(new Amount(0)),

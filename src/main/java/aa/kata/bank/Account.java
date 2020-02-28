@@ -6,7 +6,7 @@ class Account {
 
     Account(Calendar calendar) {
         balance = new Balance(new Amount(0));
-        history = new History(calendar, new AccountCreationEvent());
+        history = new History(calendar, new AccountCreationEvent(calendar.today()));
     }
 
     private Account(Balance balance, History history) {
