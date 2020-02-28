@@ -4,9 +4,9 @@ class Account {
     private final Balance balance;
     private final History history;
 
-    Account() {
+    Account(Calendar calendar) {
         balance = new Balance(new Amount(0));
-        history = new History(new AccountCreationEvent());
+        history = new History(calendar, new AccountCreationEvent());
     }
 
     private Account(Balance balance, History history) {

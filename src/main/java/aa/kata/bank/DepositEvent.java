@@ -1,12 +1,15 @@
 package aa.kata.bank;
 
+import java.time.LocalDate;
 import java.util.Objects;
 
 class DepositEvent implements AccountEvent {
+    private LocalDate date;
     private final Balance before;
     private final Balance after;
 
-    DepositEvent(Balance before, Balance after) {
+    DepositEvent(LocalDate date, Balance before, Balance after) {
+        this.date = date;
         this.before = before;
         this.after = after;
     }
@@ -16,12 +19,13 @@ class DepositEvent implements AccountEvent {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         DepositEvent that = (DepositEvent) o;
-        return Objects.equals(before, that.before) &&
-                Objects.equals(after, that.after);
+        return date.equals(that.date) &&
+                before.equals(that.before) &&
+                after.equals(that.after);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(before, after);
+        return Objects.hash(date, before, after);
     }
 }
